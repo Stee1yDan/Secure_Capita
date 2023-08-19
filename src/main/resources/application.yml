@@ -4,7 +4,7 @@ spring:
     username: root
     password: SpiralStaircase
   jpa:
-    databasePlatform: org.hibernate.dialect.MySQL8InnoDBDialect
+    databasePlatform: org.hibernate.dialect.MySQL8Dialect
     generate-ddl: true
     show-sql: true
     hibernate:
@@ -12,9 +12,10 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifier: true
-        dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
   sql:
     init:
-      mode: never
+      mode: always
+      continueOnError: false
 
