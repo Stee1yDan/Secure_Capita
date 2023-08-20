@@ -1,6 +1,7 @@
 package com.example.securecapita.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class User
 {
+    @Id
     private Long id;
     @NotEmpty
     private String firstName;
