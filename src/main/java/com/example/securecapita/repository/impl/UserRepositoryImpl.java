@@ -7,7 +7,6 @@ import com.example.securecapita.repository.RoleRepository;
 import com.example.securecapita.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -23,7 +22,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static com.example.securecapita.enumeration.RoleType.ROLE_USER;
-import static com.example.securecapita.exception.VerificationType.ACCOUNT;
+import static com.example.securecapita.enumeration.VerificationType.ACCOUNT;
 import static com.example.securecapita.query.UserQuery.*;
 
 @Repository
@@ -59,7 +58,7 @@ public class UserRepositoryImpl<T extends User> implements UserRepository<T>
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            log.error(e.getMessage());
             throw new ApiException("Unexpected error occurred:");
         }
     }
@@ -97,8 +96,8 @@ public class UserRepositoryImpl<T extends User> implements UserRepository<T>
     private SqlParameterSource getSqlParameterSource(User data)
     {
         return new MapSqlParameterSource()
-                .addValue("firstname", data.getFirstName())
-                .addValue("lastname", data.getLastName())
+                .addValue("firstName", data.getFirstName())
+                .addValue("lastName", data.getLastName())
                 .addValue("email", data.getEmail())
                 .addValue("password", encoder.encode(data.getPassword()));
 

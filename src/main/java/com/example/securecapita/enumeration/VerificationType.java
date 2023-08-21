@@ -1,4 +1,4 @@
-package com.example.securecapita.exception;
+package com.example.securecapita.enumeration;
 
 public enum VerificationType
 {

@@ -17,6 +17,7 @@ import java.util.Objects;
 
 
 import static com.example.securecapita.enumeration.RoleType.*;
+import static com.example.securecapita.query.RoleQuery.*;
 
 
 @Repository
@@ -24,8 +25,6 @@ import static com.example.securecapita.enumeration.RoleType.*;
 @Slf4j
 public class RoleRepositoryImpl implements RoleRepository<Role>
 {
-    private static final String SELECT_ROLE_BY_NAME_QUERY = "";
-    private static final String ADD_ROLE_TO_USER_QUERY = "";
 
     private final NamedParameterJdbcTemplate jdbc;
 
@@ -65,8 +64,8 @@ public class RoleRepositoryImpl implements RoleRepository<Role>
         log.info("Adding role {} to user with id: {}", roleName, userId);
         try
         {
-            Role role = jdbc.queryForObject(SELECT_ROLE_BY_NAME_QUERY, Map.of("roleName", roleName), new RoleRowMapper());
-            jdbc.update(ADD_ROLE_TO_USER_QUERY, Map.of("userId", userId, "role", Objects.requireNonNull(role).getId()));
+            Role role = jdbc.queryForObject(SELECT_ROLE_BY_NAME_QUERY, Map.of("name", roleName), new RoleRowMapper());
+            jdbc.update(ADD_ROLE_TO_USER_QUERY, Map.of("userId", userId, "roleId", Objects.requireNonNull(role).getId()));
 
         }
         catch (EmptyResultDataAccessException e)

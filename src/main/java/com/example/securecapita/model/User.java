@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class User
 {
-    @Id
     private Long id;
     @NotEmpty
     private String firstName;
